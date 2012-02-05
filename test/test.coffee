@@ -12,7 +12,7 @@ describe 'Parser', ->
   describe '#parse', ->
     it 'should return an AST', ->
       router_line.parser.parse(testUrl)
-        .should.eql ['users', [':user_id', ['profile']], ['page']]
+        .should.eql require './ast_ex1.json'
 
 describe 'Matcher#_expandCondition', ->
   it 'should be return an array', ->

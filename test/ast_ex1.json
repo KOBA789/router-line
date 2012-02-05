@@ -1,0 +1,33 @@
+[
+  {
+    "type": "name", 
+    "value": "users"
+  }, 
+  {
+    "type": "optional", 
+    "value": [
+      {
+        "type": "variable", 
+        "value": "user_id"
+      }, 
+      {
+        "type": "optional", 
+        "value": [
+          {
+            "type": "name", 
+            "value": "profile"
+          }
+        ]
+      }
+    ]
+  }, 
+  {
+    "type": "optional", 
+    "value": [
+      {
+        "type": "name", 
+        "value": "page"
+      }
+    ]
+  }
+]
