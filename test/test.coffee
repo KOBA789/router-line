@@ -1,24 +1,38 @@
 router_line = require '../lib'
 util = require 'util'
 
-testUrl = '/users(/:user_id/(profile))'
+testUrl = '/users(/:user_id/(profile))/(page)'
 
 describe 'Parser', ->
   describe '#_tokenize', ->
     it 'should return tokens', ->
       router_line.parser._tokenize(testUrl)
-        .should.eql ['users', '(', ':user_id', '(', 'profile', ')', ')']
+        .should.eql ['users', '(', ':user_id', '(', 'profile', ')', ')', '(', 'page', ')']
 
   describe '#parse', ->
     it 'should return an AST', ->
       router_line.parser.parse(testUrl)
-        .should.eql ['users', [':user_id', ['profile']]]
+        .should.eql ['users', [':user_id', ['profile']], ['page']]
 
 describe 'Matcher#_expandCondition', ->
-  ast = router_line.parser.parse testUrl
   it 'should be return an array', ->
+    ast = router_line.parser.parse testUrl
     router_line.matcher._expandCondition(ast)
       .should.be.an.instanceof(Array)
+  it 'should return patterns', ->
+    router_line.matcher._expandCondition([['profile']])
+      .should.equal [
+          ['/']
+          ['profile', '/']
+        ]
+
+  it 'should return patterns', ->
+    router_line.matcher._expandCondition([':user_id', ['profile']])
+      .should.equal [
+          [':user_id', '/']
+          [':user_id', 'profile', '/']
+        ]
+
 
 describe 'Router', ->
   it '', ->
