@@ -7,7 +7,7 @@ describe 'Parser', ->
   describe '#_tokenize', ->
     it 'should return tokens', ->
       router_line.parser._tokenize(testUrl)
-        .should.eql ['users', '(', ':user_id', '(', 'profile', ')', ')', '(', 'page', ')']
+        .should.eql [{token:'name',value:'users'},{token:'open',value:'('},{token:'variable',value:':user_id'},{token:'open',value:'('},{token:'name',value:'profile'},{token:'close',value:')'},{token:'close',value:')'},{token:'open',value:'('},{token:'name',value:'page'},{token:'close',value:')'},]
 
   describe '#parse', ->
     it 'should return an AST', ->
