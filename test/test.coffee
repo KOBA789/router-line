@@ -14,18 +14,6 @@ describe 'Parser', ->
       router_line.parser.parse(testUrl)
         .should.eql require './ast_ex1.json'
 
-  describe 'combinators', ->
-    describe '#many1', ->
-      it 'should return an AST', ->
-        fizz = router_line.parser.combinators.match('fizz')
-        parser = router_line.parser.combinators.many1(fizz)
-        ast = parser([
-          {token: 'fizz', value: 'fizz'}
-          {token: 'fizz', value: 'fizz'}
-          {token: 'fizz', value: 'fizz'}
-        ])
-        console.log util.inspect ast, false, null
-
 describe 'Matcher#_expandCondition', ->
   it 'should be return an array', ->
     ast = router_line.parser.parse testUrl
