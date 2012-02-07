@@ -7,12 +7,12 @@ describe 'Parser', ->
   describe '#_tokenize', ->
     it 'should return tokens', ->
       router_line.parser._tokenize(testUrl)
-        .should.eql [{token:'name',value:'users'},{token:'open',value:'('},{token:'variable',value:':user_id'},{token:'open',value:'('},{token:'name',value:'profile'},{token:'close',value:')'},{token:'close',value:')'},{token:'open',value:'('},{token:'name',value:'page'},{token:'close',value:')'},]
+        .should.eql ['users', '(', ':user_id', '(', 'profile', ')', ')', '(', 'page', ')']
 
   describe '#parse', ->
     it 'should return an AST', ->
       router_line.parser.parse(testUrl)
-        .should.eql require './ast_ex1.json'
+        .should.eql ['users', [':user_id', ['profile']], ['page']]
 
 describe 'Matcher#_expandCondition', ->
   it 'should be return an array', ->
@@ -21,16 +21,16 @@ describe 'Matcher#_expandCondition', ->
       .should.be.an.instanceof(Array)
   it 'should return patterns', ->
     router_line.matcher._expandCondition([['profile']])
-      .should.equal [
-          ['/']
+      .should.eql [
           ['profile', '/']
+          ['/']
         ]
 
   it 'should return patterns', ->
     router_line.matcher._expandCondition([':user_id', ['profile']])
-      .should.equal [
-          [':user_id', '/']
+      .should.eql [
           [':user_id', 'profile', '/']
+          [':user_id', '/']
         ]
 
 
