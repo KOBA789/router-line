@@ -19,21 +19,21 @@ describe 'Matcher#_expandCondition', ->
     ast = router_line.parser.parse testUrl
     router_line.matcher._expandCondition(ast)
       .should.be.an.instanceof(Array)
-  it 'should return patterns', ->
+  it 'should be able to expand an optional pattern', ->
     router_line.matcher._expandCondition([['profile']])
       .should.eql [
           ['/']
           ['profile', '/']
         ]
 
-  it 'should return patterns', ->
+  it 'should be able to expand a little difficult pattern', ->
     router_line.matcher._expandCondition([':user_id', ['profile']])
       .should.eql [
           [':user_id', '/']
           [':user_id', 'profile', '/']
         ]
 
-  it 'should return patterns', ->
+  it 'should be able to expand a pattern contains plural optional grammer', ->
     router_line.matcher._expandCondition([':user_id', ['profile'], ['page']])
       .should.eql [
           [':user_id', '/']
