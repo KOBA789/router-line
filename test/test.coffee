@@ -22,15 +22,15 @@ describe 'Matcher#_expandCondition', ->
   it 'should return patterns', ->
     router_line.matcher._expandCondition([['profile']])
       .should.eql [
-          ['profile', '/']
           ['/']
+          ['profile', '/']
         ]
 
   it 'should return patterns', ->
     router_line.matcher._expandCondition([':user_id', ['profile']])
       .should.eql [
-          [':user_id', 'profile', '/']
           [':user_id', '/']
+          [':user_id', 'profile', '/']
         ]
 
 
