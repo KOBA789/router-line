@@ -33,6 +33,14 @@ describe 'Matcher#_expandCondition', ->
           [':user_id', 'profile', '/']
         ]
 
+  it 'should return patterns', ->
+    router_line.matcher._expandCondition([':user_id', ['profile'], ['page']])
+      .should.eql [
+          [':user_id', '/']
+          [':user_id', 'page', '/']
+          [':user_id', 'profile', '/']
+          [':user_id', 'profile', 'page', '/']
+        ]
 
 describe 'Router', ->
   it '', ->
