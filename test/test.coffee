@@ -17,24 +17,24 @@ describe 'Parser', ->
 describe 'Map#_expandCondition', ->
   it 'should be return an array', ->
     ast = router_line.parser.parse testUrl
-    router_line.map._expandCondition(ast)
+    router_line.Map.prototype._expandCondition(ast)
       .should.be.an.instanceof(Array)
   it 'should be able to expand an optional pattern', ->
-    router_line.map._expandCondition([['profile']])
+    router_line.Map.prototype._expandCondition([['profile']])
       .should.eql [
           ['/']
           ['profile', '/']
         ]
 
   it 'should be able to expand a little difficult pattern', ->
-    router_line.map._expandCondition([':user_id', ['profile']])
+    router_line.Map.prototype._expandCondition([':user_id', ['profile']])
       .should.eql [
           [':user_id', '/']
           [':user_id', 'profile', '/']
         ]
 
   it 'should be able to expand a pattern contains plural optional grammer', ->
-    router_line.map._expandCondition([':user_id', ['profile'], ['page']])
+    router_line.Map.prototype._expandCondition([':user_id', ['profile'], ['page']])
       .should.eql [
           [':user_id', '/']
           [':user_id', 'page', '/']
