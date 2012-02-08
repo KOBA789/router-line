@@ -21,10 +21,11 @@ describe 'Map', ->
       router_line.Map.prototype._expandCondition(ast)
         .should.be.an.instanceof(Array)
     it 'should be able to expand a pattern', ->
-      router_line.Map.prototype._expandCondition(['profile'])
+      router_line.Map.prototype._expandCondition([['profile']])
         .should.eql [
-            ['profile']
-          ]
+          []
+          ['profile']
+        ]
 
     it 'should be able to expand a little difficult pattern', ->
       router_line.Map.prototype._expandCondition([':user_id', ['profile']])
