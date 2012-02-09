@@ -23,36 +23,36 @@ describe 'Map', ->
     it 'should be able to expand a pattern', ->
       router_line.Map.prototype._expandCondition([['profile']])
         .should.eql [
-          []
           ['profile']
+          []
         ]
 
     it 'should be able to expand a little difficult pattern', ->
       router_line.Map.prototype._expandCondition([':user_id', ['profile']])
         .should.eql [
-            [':user_id']
             [':user_id', 'profile']
+            [':user_id']
           ]
 
     it 'should be able to expand a pattern contains plural optional grammer', ->
       router_line.Map.prototype._expandCondition([':user_id', ['profile'], ['page']])
         .should.eql [
-            [':user_id']
-            [':user_id', 'page']
-            [':user_id', 'profile']
             [':user_id', 'profile', 'page']
+            [':user_id', 'profile']
+            [':user_id', 'page']
+            [':user_id']
           ]
 
   describe '#add', ->
     it 'should be success', ->
       map = new router_line.Map
-      map.add('/users/own/profile').should.be.true
-      map.add('/users/:user_id/profile').should.be.true
+      map.add('/users/own/profile', 'someA').should.be.true
+      map.add('/users/:user_id/profile', 'someB').should.be.true
 
     it 'should be failed', ->
       map = new router_line.Map
-      map.add('/users/:user_name/profile').should.be.true
-      map.add('/users/:user_id/profile').should.be.false
+      map.add('/users/:user_name/profile', 'someA').should.be.true
+      map.add('/users/:user_id/profile', 'someB').should.be.false
 
 describe 'Router', ->
 
