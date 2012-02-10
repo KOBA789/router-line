@@ -54,27 +54,27 @@ describe 'Router', ->
       map.add('/users/:user_name/profile', 'someA').should.be.true
       map.add('/users/:user_id/profile', 'someB').should.be.false
 
-    describe '#route', ->
-      router = new router_line.Router
+  describe '#route', ->
+    router = new router_line.Router
 
-      router.add '/', 'root'
-      router.add '/users/:user_name/profile', 'someone\'s profile'
-      router.add '/users/own(/profile)', 'my profile'
+    router.add '/', 'root'
+    router.add '/users/:user_name/profile', 'someone\'s profile'
+    router.add '/users/own(/profile)', 'my profile'
 
-      it 'should route', ->
-        router.route('/users/own').should.eql
-          params: {}
-          value: 'my profile'
+    it 'should route', ->
+      router.route('/users/own').should.eql
+        params: {}
+        value: 'my profile'
 
-      it 'should route successful', ->
-        router.route('/users/koba789/profile').should.eql
-          params: {user_name: 'koba789'}
-          value: 'someone\'s profile'
+    it 'should route successful', ->
+      router.route('/users/koba789/profile').should.eql
+        params: {user_name: 'koba789'}
+        value: 'someone\'s profile'
 
-      it 'should route to root', ->
-        router.route('/').should.eql
-          params: {}
-          value: 'root'
+    it 'should route to root', ->
+      router.route('/').should.eql
+        params: {}
+        value: 'root'
 
-      it 'should be failed to route', ->
-        router.route('/undefined/route') == undefined
+    it 'should be failed to route', ->
+      router.route('/undefined/route') == undefined
