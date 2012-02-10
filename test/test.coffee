@@ -56,6 +56,8 @@ describe 'Router', ->
 
     describe '#route', ->
       router = new router_line.Router
+
+      router.add '/', 'root'
       router.add '/users/:user_name/profile', 'someone\'s profile'
       router.add '/users/own(/profile)', 'my profile'
 
@@ -68,3 +70,11 @@ describe 'Router', ->
         router.route('/users/koba789/profile').should.eql
           params: {user_name: 'koba789'}
           value: 'someone\'s profile'
+
+      it 'should route to root', ->
+        router.route('/').should.eql
+          params: {}
+          value: 'root'
+
+      it 'should be failed to route', ->
+        router.route('/undefined/route') == undefined
