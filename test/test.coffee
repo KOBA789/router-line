@@ -89,3 +89,4 @@ describe 'Router', ->
 
     it 'should be failed to route', ->
       router.route('GET', '/undefined/route') == undefined
+
