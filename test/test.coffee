@@ -1,4 +1,4 @@
-router_line = require '../lib'
+router_line = if process.env.TEST_COV then require '../lib-cov' else require '../lib'
 util = require 'util'
 
 testUrl = '/users(/:user_id/(profile))/(page)'
