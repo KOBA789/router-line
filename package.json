@@ -10,7 +10,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "should": "*"
+    "should": "*",
+    "mocha": "*"
   },
   "optionalDependencies": {},
   "main": "./lib/index.js",
