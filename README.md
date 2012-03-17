@@ -6,4 +6,6 @@ This is a module of "subway"
 
 Run Test with Coverage
 --------------------------
-TEST_COV=1 mocha --reporter html-cov > coverage.html && open coverage.html
+```bash
+$ TEST_COV=1 mocha --reporter html-cov > coverage.html && open coverage.html
+```
