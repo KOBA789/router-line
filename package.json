@@ -11,11 +11,12 @@
   "dependencies": {},
   "devDependencies": {
     "should": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "coffee-script": "*"
   },
   "optionalDependencies": {},
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "node_modules/mocha/bin/mocha"
   }
 }
