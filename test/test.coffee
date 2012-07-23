@@ -62,7 +62,10 @@ describe 'Router', ->
   describe '#route', ->
     router = new router_line.Router
 
+    util = require 'util'
+
     router.GET '/', 'root'
+    router.GET '/users/:user_name/articles', 'someone\'s articles'
     router.GET '/users/:user_name/profile', 'someone\'s profile'
     router.GET '/users/own(/profile)', 'my profile'
     router.POST '/article/post', 'post page'
